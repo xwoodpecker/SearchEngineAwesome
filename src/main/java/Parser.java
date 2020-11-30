@@ -18,10 +18,10 @@ public class Parser {
     private String[] tokenize(String body) {
         String text = Jsoup.parse(body).text();
         //only keep . and - as full stops
-        text.replaceAll("[^A-Za-z0-9\\.-]", " ");
+        text = text.replaceAll("[^A-Za-z0-9\\.'-]", " ");
         //discard full stops that are not in the middle of a word
-        text.replaceAll("\\s[\\.|-]|[\\.|-]\\s", " ");
-        text.toLowerCase();
+        text = text.replaceAll("(\\.|-|'|\\s){2,}", " ");
+        text = text.toLowerCase();
         return text.split("\\s+");
     }
 

@@ -9,7 +9,7 @@ public class Main {
 
         Importer importer = new Importer();
         File fileDirectory = new File(directory);
-        //importer.importFile(fileDirectory);
+        importer.importFile(fileDirectory);
 
         Document document;
         File file = new File(directory + "/01/01/1165027.xml");

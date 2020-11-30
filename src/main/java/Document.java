@@ -44,6 +44,9 @@ public class Document {
         this.content = content;
     }
 
+    public Document() {
+    }
+
     public Document(Long id) {
         this.id = id;
     }

@@ -8,7 +8,7 @@ import static org.apache.commons.io.FileUtils.listFiles;
 
 public class Importer {
 
-    private void importFile(File file){
+    public void importFile(File file){
         if(file == null || !file.isDirectory()) {
             System.out.println("No Directory provided!");
             return;

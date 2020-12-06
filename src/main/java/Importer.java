@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import static org.apache.commons.io.FileUtils.listFiles;
 
+/**
+ * 1.2 Uncompressing Archives
+ */
 public class Importer {
 
     public void importFile(File file){
@@ -22,6 +25,5 @@ public class Importer {
             Long size = f.length();
             System.out.println(String.format("Name: %s Size: %d Bytes", name, size));
         }
-
     }
 }

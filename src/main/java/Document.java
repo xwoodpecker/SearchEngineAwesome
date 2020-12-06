@@ -1,3 +1,7 @@
+// 1.1 Document Collection
+/**
+ * 1.1 Document Collection
+ */
 public class Document {
 
     // Document identifier

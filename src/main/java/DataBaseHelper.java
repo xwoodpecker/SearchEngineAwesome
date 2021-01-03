@@ -21,22 +21,24 @@ public class DataBaseHelper {
             insertIntoDocs.setString(3, document.getUrl());
             insertIntoDocs.executeUpdate();
 
-            Map<String, Long> tfs = Arrays.stream(document.getContent())
-                                    .collect(Collectors.groupingBy(
-                                    Function.identity(),
-                                    Collectors.counting()));
+            if(document.getContent() != null) {
+                Map<String, Long> tfs = Arrays.stream(document.getContent())
+                        .collect(Collectors.groupingBy(
+                                Function.identity(),
+                                Collectors.counting()));
 
-            int i = 0;
-            for(String term : tfs.keySet()) {
-                i++;
-                PreparedStatement insertIntoTfs = connection.prepareStatement(sqlInsertIntoTfs);
-                insertIntoTfs.setLong(1, document.getId());
-                insertIntoTfs.setString(2, term);
-                insertIntoTfs.setLong(3, tfs.get(term));
-                insertIntoTfs.addBatch();
+                int i = 0;
+                for (String term : tfs.keySet()) {
+                    i++;
+                    PreparedStatement insertIntoTfs = connection.prepareStatement(sqlInsertIntoTfs);
+                    insertIntoTfs.setLong(1, document.getId());
+                    insertIntoTfs.setString(2, term);
+                    insertIntoTfs.setLong(3, tfs.get(term));
+                    insertIntoTfs.addBatch();
 
-                if(i % 10 == 0) {
-                    insertIntoTfs.executeBatch();
+                    if (i % 10 == 0) {
+                        insertIntoTfs.executeBatch();
+                    }
                 }
             }
 

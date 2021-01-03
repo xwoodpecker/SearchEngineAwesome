@@ -15,17 +15,10 @@ public class Main {
     public static void main(String[] args) {
 
         String directory;
-        directory = "E:/HTW/Unterlagen/IR/nyt/data/2000/01/01";
+        directory = "C:/Users/WoodPecker/IdeaProjects/InformationRetrieval/SearchEngineAwesome/nyt/data/2000/01/01";
 
         Importer importer = new Importer();
         File fileDirectory = new File(directory);
         importer.importFile(fileDirectory);
-
-        Document document;
-        File file = new File(directory + "/01/01/1165027.xml");
-        Parser parser = new Parser();
-        document = parser.parse(file);
-        System.out.println(document.toString());
-
     }
 }

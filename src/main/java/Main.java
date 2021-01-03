@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
 
         String directory;
-        directory = "C:/Users/WoodPecker/IdeaProjects/InformationRetrieval/SearchEngineAwesome/nyt/data/2000/01/01";
+        directory = "./nyt/data/2000/01/01";
 
         Importer importer = new Importer();
         File fileDirectory = new File(directory);

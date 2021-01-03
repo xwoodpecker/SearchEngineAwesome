@@ -26,15 +26,18 @@ public class DataBaseHelper {
                                     Function.identity(),
                                     Collectors.counting()));
 
+            int i = 0;
             for(String term : tfs.keySet()) {
+                i++;
                 PreparedStatement insertIntoTfs = connection.prepareStatement(sqlInsertIntoTfs);
-                for(int i = 0; i < 10; i++) {
-                    insertIntoTfs.setLong(1, document.getId());
-                    insertIntoTfs.setString(2, term);
-                    insertIntoTfs.setLong(3, tfs.get(term));
-                    insertIntoTfs.addBatch();
+                insertIntoTfs.setLong(1, document.getId());
+                insertIntoTfs.setString(2, term);
+                insertIntoTfs.setLong(3, tfs.get(term));
+                insertIntoTfs.addBatch();
+
+                if(i % 10 == 0) {
+                    insertIntoTfs.executeBatch();
                 }
-                insertIntoTfs.executeBatch();
             }
 
             return true;

@@ -28,10 +28,13 @@ public class DataBaseHelper {
 
             for(String term : tfs.keySet()) {
                 PreparedStatement insertIntoTfs = connection.prepareStatement(sqlInsertIntoTfs);
-                insertIntoTfs.setLong(1, document.getId());
-                insertIntoTfs.setString(2, term);
-                insertIntoTfs.setLong(3, tfs.get(term));
-                insertIntoTfs.executeUpdate();
+                for(int i = 0; i < 10; i++) {
+                    insertIntoTfs.setLong(1, document.getId());
+                    insertIntoTfs.setString(2, term);
+                    insertIntoTfs.setLong(3, tfs.get(term));
+                    insertIntoTfs.addBatch();
+                }
+                insertIntoTfs.executeBatch();
             }
 
             return true;

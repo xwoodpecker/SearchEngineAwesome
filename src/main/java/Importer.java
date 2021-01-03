@@ -8,6 +8,9 @@ import static org.apache.commons.io.FileUtils.listFiles;
 
 public class Importer {
 
+    private Parser parser = new Parser();
+    private DataBaseHelper dataBaseHelper = new DataBaseHelper();
+
     public void importFile(File file){
         if(file == null || !file.isDirectory()) {
             System.out.println("No Directory provided!");
@@ -21,6 +24,9 @@ public class Importer {
             String name = f.getName();
             Long size = f.length();
             System.out.println(String.format("Name: %s Size: %d Bytes", name, size));
+            Document document = parser.parse(f);
+            dataBaseHelper.saveDocument(document);
+
         }
 
     }

@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import static org.apache.commons.io.FileUtils.listFiles;
 
+/**
+ * 1.2 Uncompressing Archives
+ */
 public class Importer {
 
     private Parser parser = new Parser();
@@ -28,6 +31,5 @@ public class Importer {
             dataBaseHelper.saveDocument(document);
 
         }
-
     }
 }

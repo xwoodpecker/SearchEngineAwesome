@@ -1,3 +1,7 @@
+// 1.1 Document Collection
+/**
+ * 1.1 Document Collection
+ */
 public class Document {
 
     // Document identifier
@@ -54,5 +58,12 @@ public class Document {
     public Document(Long id, String title) {
         this.id = id;
         this.title = title;
+    }
+
+    @Override
+    public String toString()
+    {
+        String toString = this.title + "; " + this.id + "; ";
+        return toString;
     }
 }

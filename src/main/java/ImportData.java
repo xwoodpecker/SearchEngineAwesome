@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.List;
 
 /**
  * Information Retrieval - Programming Assignment 1
@@ -16,8 +17,29 @@ public class ImportData {
         String directory;
         directory = "./nyt/data/2000/01/01";
 
-        Importer importer = new Importer();
-        File fileDirectory = new File(directory);
-        importer.importFile(fileDirectory);
+        //Importer importer = new Importer();
+        //File fileDirectory = new File(directory);
+        //importer.importFile(fileDirectory);
+
+        InvertedIndex invertedIndex = new InvertedIndex();
+        String term = "you";
+        int df;
+        int size;
+        long did = 1165027;
+        int lenght;
+        df = invertedIndex.getDF(term);
+        List<Posting> indexList;
+        indexList = invertedIndex.getIndexList(term);
+
+        size = invertedIndex.getSize();
+
+        lenght = invertedIndex.getLength(did);
+
+        System.out.print(df);
+        System.out.print(size);
+        System.out.print(lenght);
+        for (Posting posting: indexList){
+            System.out.println(posting);
+        }
     }
 }

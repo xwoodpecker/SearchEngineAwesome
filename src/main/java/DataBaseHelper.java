@@ -55,10 +55,11 @@ public class DataBaseHelper {
 
     public int getDF(String term) {
         int df = -1;
+        Statement statement = null;
+        ResultSet rs = null;
 
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs;
+            statement = connection.createStatement();
 
             rs = statement.executeQuery("SELECT df FROM dfs WHERE term =" + term + ";");
             while ( rs.next() ) {
@@ -73,6 +74,10 @@ public class DataBaseHelper {
         {
             try
             {
+                if(rs != null)
+                    rs.close();
+                if(statement != null)
+                    statement.close();
                 if(connection != null)
                     connection.close();
             }
@@ -86,10 +91,10 @@ public class DataBaseHelper {
 
     public int getSizeOfD() {
         int size = -1;
+        Statement statement = null;
+        ResultSet rs = null;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs;
-
+            statement = connection.createStatement();
 
             rs = statement.executeQuery("select size from d;");
             while ( rs.next() ) {
@@ -104,6 +109,10 @@ public class DataBaseHelper {
         {
             try
             {
+                if(rs != null)
+                    rs.close();
+                if(statement != null)
+                    statement.close();
                 if(connection != null)
                     connection.close();
             }
@@ -117,10 +126,11 @@ public class DataBaseHelper {
 
     public int getDocumentLength(long did) {
         int dl = -1;
+        Statement statement = null;
+        ResultSet rs = null;
 
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs;
+            statement = connection.createStatement();
 
             rs = statement.executeQuery("SELECT len FROM dls WHERE did =" + did + ";");
             while ( rs.next() ) {
@@ -135,6 +145,10 @@ public class DataBaseHelper {
         {
             try
             {
+                if(rs != null)
+                    rs.close();
+                if(statement != null)
+                    statement.close();
                 if(connection != null)
                     connection.close();
             }

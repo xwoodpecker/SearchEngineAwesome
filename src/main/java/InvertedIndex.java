@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class InvertedIndex {
 
-    DataBaseHelper dataBaseHelper;
+    private DataBaseHelper dataBaseHelper;
 
     public InvertedIndex() {
         dataBaseHelper = new DataBaseHelper();

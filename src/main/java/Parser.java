@@ -20,7 +20,7 @@ public class Parser {
     /**
      * 1.4 Tokenization
      */
-    private String[] tokenize(String body) {
+    public String[] tokenize(String body) {
         try {
             // remove all HTML commands
             String text = Jsoup.parse(body).text();

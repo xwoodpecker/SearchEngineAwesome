@@ -99,7 +99,7 @@ public class DataBaseHelper {
     }
 
     public int getSizeOfD() {
-        int size = 0;
+        int size = -1;
         try {
             Statement statement = connection.createStatement();
             ResultSet rs;

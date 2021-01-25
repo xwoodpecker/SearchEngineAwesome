@@ -1,6 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseHelper {
@@ -34,7 +33,46 @@ public class DataBaseHelper {
     }
 
 
-    public List<Posting> getPostings(){
+    public List<Posting> getPostings(String term){
+        List<Posting> postings = new ArrayList<>();
 
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+
+            rs = statement.executeQuery("SELECT did, tf FROM Customers WHERE term =" + term + "ORDER BY did;");
+            while ( rs.next() ) {
+                String did = rs.getString("did");
+                String tf = rs.getString("tf");
+                Posting posting = new Posting(Long.valueOf(did), Integer.valueOf(tf));
+                postings.add(posting);
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        return postings;
+    }
+
+    public int getDF(String term) {
+    }
+
+    public int getSizeOfD() {
+    }
+
+    public int getDocumentLength(long did) {
     }
 }

@@ -71,6 +71,34 @@ public class DataBaseHelper {
     }
 
     public int getSizeOfD() {
+        int size = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+
+
+            rs = statement.executeQuery("select size from d;");
+            while ( rs.next() ) {
+                size = rs.getInt("size");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        return size;
     }
 
     public int getDocumentLength(long did) {

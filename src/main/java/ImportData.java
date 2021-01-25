@@ -35,11 +35,11 @@ public class ImportData {
 
         lenght = invertedIndex.getLength(did);
 
-        System.out.print(df);
-        System.out.print(size);
-        System.out.print(lenght);
+        System.out.println(df);
+        System.out.println(size);
+        System.out.println(lenght);
         for (Posting posting: indexList){
-            System.out.println(posting);
+            System.out.println(posting.toString());
         }
     }
 }

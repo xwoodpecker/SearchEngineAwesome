@@ -1,7 +1,7 @@
 public class Posting {
 
-    public long did;
-    public int tf;
+    private long did;
+    private int tf;
 
     public Posting(long did, int tf) {
         this.did = did;
@@ -22,5 +22,13 @@ public class Posting {
 
     public void setTf(int tf) {
         this.tf = tf;
+    }
+
+    @Override
+    public String toString() {
+        return "Posting{" +
+                "did=" + did +
+                ", tf=" + tf +
+                '}';
     }
 }

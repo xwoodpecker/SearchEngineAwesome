@@ -22,7 +22,7 @@ public class DataBaseHelper {
             connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
             statement = connection.createStatement();
 
-            rs = statement.executeQuery("SELECT did, tf FROM tfs WHERE term =" + term + "ORDER BY did;");
+            rs = statement.executeQuery("SELECT did, tf FROM tfs WHERE term ='" + term + "' ORDER BY did;");
             while ( rs.next() ) {
                 String did = rs.getString("did");
                 String tf = rs.getString("tf");
@@ -59,9 +59,10 @@ public class DataBaseHelper {
         ResultSet rs = null;
 
         try {
+            connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
             statement = connection.createStatement();
 
-            rs = statement.executeQuery("SELECT df FROM dfs WHERE term =" + term + ";");
+            rs = statement.executeQuery("SELECT df FROM dfs WHERE term ='" + term + "';");
             while ( rs.next() ) {
                 df = Integer.valueOf(rs.getString("df"));
             }
@@ -94,6 +95,7 @@ public class DataBaseHelper {
         Statement statement = null;
         ResultSet rs = null;
         try {
+            connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
             statement = connection.createStatement();
 
             rs = statement.executeQuery("select size from d;");
@@ -130,6 +132,7 @@ public class DataBaseHelper {
         ResultSet rs = null;
 
         try {
+            connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
             statement = connection.createStatement();
 
             rs = statement.executeQuery("SELECT len FROM dls WHERE did =" + did + ";");

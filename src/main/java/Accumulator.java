@@ -18,4 +18,12 @@ public class Accumulator {
     public void setScore(double score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Accumulator{" +
+                "did=" + did +
+                ", score=" + score +
+                '}';
+    }
 }

@@ -26,19 +26,21 @@ public class QueryProcessor {
             {
                 long did = posting.getDid();
                 int tf = posting.getTf();
-                double score = tf * Math.log((d/df));
+                double score = tf * Math.log(((double)d/df));
                 if(!accumulatorMap.containsKey(did)) {
                     Accumulator acc = new Accumulator();
                     acc.setDid(did);
                     acc.setScore(score);
+                    accumulatorMap.put(did, acc);
                 }else {
                     Accumulator acc = accumulatorMap.get(did);
                     acc.setScore(acc.getScore() + score);
+                    accumulatorMap.replace(did, acc);
                 }
             }
         }
         List<Accumulator> accumulatorList = accumulatorMap.values().stream().collect(Collectors.toList());
-        accumulatorList.sort(Comparator.comparingDouble(Accumulator::getScore));
+        accumulatorList.sort(Comparator.comparingDouble(Accumulator::getScore).reversed());
         return accumulatorList;
     }
 

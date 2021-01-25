@@ -15,7 +15,7 @@ public class ImportData {
     public static void main(String[] args) {
 
         String directory;
-        directory = "./nyt/data/2000/01/01";
+        directory = "./nyt/data/2000/";
 
         Importer importer = new Importer();
         File fileDirectory = new File(directory);

@@ -22,7 +22,7 @@ public class SetupAdditionalTables
             statement.executeUpdate("drop table if exists dfs");
             statement.executeUpdate("CREATE TABLE dfs AS " +
                     "SELECT term, COUNT(*) AS df FROM tfs GROUP BY term;");
-            statement.executeUpdate("CREATE INDEX idx_dfs ON docs(term)");
+            statement.executeUpdate("CREATE INDEX idx_dfs ON dfs(term)");
 
             statement.executeUpdate("drop table if exists d");
             statement.executeUpdate("CREATE TABLE d AS " +

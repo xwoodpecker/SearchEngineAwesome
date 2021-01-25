@@ -36,12 +36,17 @@ public class Test {
         resultQuery2 = queryProcessor.process(query2, 5);
         resultQuery3 = queryProcessor.process(query3, 5);
 
+        System.out.println(query1);
         for(Accumulator accumulator:resultQuery1){
             System.out.println(accumulator.toString());
         }
+
+        System.out.println(query2);
         for(Accumulator accumulator:resultQuery2){
             System.out.println(accumulator.toString());
         }
+
+        System.out.println(query3);
         for(Accumulator accumulator:resultQuery3){
             System.out.println(accumulator.toString());
         }

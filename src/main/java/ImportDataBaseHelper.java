@@ -18,6 +18,7 @@ public class ImportDataBaseHelper {
         connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
+            connection.setAutoCommit(false);
 
             insertIntoDocs = connection.prepareStatement(sqlInsertIntoDocs);
             insertIntoTfs = connection.prepareStatement(sqlInsertIntoTfs);
@@ -26,18 +27,6 @@ public class ImportDataBaseHelper {
         {
             System.err.println(e.getMessage());
 
-        }
-        finally
-        {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                System.err.println(e.getMessage());
-            }
         }
     }
 
@@ -77,20 +66,25 @@ public class ImportDataBaseHelper {
             return false;
 
         }
-        finally
+    }
+
+    public void commitAndClose() {
+        try {
+            connection.commit();
+
+            if(insertIntoDocs != null)
+                insertIntoDocs.close();
+
+            if(insertIntoTfs != null)
+                insertIntoTfs.close();
+
+            if(connection != null)
+                connection.close();
+
+        }
+        catch(SQLException e)
         {
-            try
-            {
-                if(insertIntoDocs != null)
-                    insertIntoDocs.close();
-                if(insertIntoTfs != null)
-                    insertIntoTfs.close();
-            }
-            catch(SQLException e)
-            {
-                System.err.println(e.getMessage());
-                return false;
-            }
+            System.err.println(e.getMessage());
         }
     }
 }

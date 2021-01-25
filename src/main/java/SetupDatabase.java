@@ -28,7 +28,7 @@ public class SetupDatabase
                     "    tf INT(11) NOT NULL," +
                     "    PRIMARY KEY (did, term)" +
                     ");");
-            statement.executeUpdate("CREATE INDEX idx_tfs ON docs(term, did)");
+            statement.executeUpdate("CREATE INDEX idx_tfs ON tfs(term, did)");
 
 
 

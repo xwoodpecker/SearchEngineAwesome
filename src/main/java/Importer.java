@@ -28,5 +28,6 @@ public class Importer {
             Document document = parser.parse(f);
             importDataBaseHelper.saveDocument(document);
         }
+        importDataBaseHelper.commitAndClose();
     }
 }

@@ -17,29 +17,8 @@ public class ImportData {
         String directory;
         directory = "./nyt/data/2000/01/01";
 
-        //Importer importer = new Importer();
-        //File fileDirectory = new File(directory);
-        //importer.importFile(fileDirectory);
-
-        InvertedIndex invertedIndex = new InvertedIndex();
-        String term = "you";
-        int df;
-        int size;
-        long did = 1165027;
-        int lenght;
-        df = invertedIndex.getDF(term);
-        List<Posting> indexList;
-        indexList = invertedIndex.getIndexList(term);
-
-        size = invertedIndex.getSize();
-
-        lenght = invertedIndex.getLength(did);
-
-        System.out.println(df);
-        System.out.println(size);
-        System.out.println(lenght);
-        for (Posting posting: indexList){
-            System.out.println(posting.toString());
-        }
+        Importer importer = new Importer();
+        File fileDirectory = new File(directory);
+        importer.importFile(fileDirectory);
     }
 }

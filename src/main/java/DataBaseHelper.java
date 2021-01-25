@@ -40,7 +40,7 @@ public class DataBaseHelper {
             Statement statement = connection.createStatement();
             ResultSet rs;
 
-            rs = statement.executeQuery("SELECT did, tf FROM Customers WHERE term =" + term + "ORDER BY did;");
+            rs = statement.executeQuery("SELECT did, tf FROM tfs WHERE term =" + term + "ORDER BY did;");
             while ( rs.next() ) {
                 String did = rs.getString("did");
                 String tf = rs.getString("tf");
@@ -68,11 +68,67 @@ public class DataBaseHelper {
     }
 
     public int getDF(String term) {
+        int df = -1;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+
+            rs = statement.executeQuery("SELECT df FROM dfs WHERE term =" + term + ";");
+            while ( rs.next() ) {
+                df = Integer.valueOf(rs.getString("df"));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        return df;
     }
 
     public int getSizeOfD() {
     }
 
     public int getDocumentLength(long did) {
+        int dl = -1;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+
+            rs = statement.executeQuery("SELECT len FROM dls WHERE did =" + did + ";");
+            while ( rs.next() ) {
+                dl = Integer.valueOf(rs.getString("len"));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        return dl;
     }
 }

@@ -19,6 +19,7 @@ public class SetupDatabase
                     "    url VARCHAR(255) NOT NULL," +
                     "    PRIMARY KEY (did)" +
                     ");");
+            statement.executeUpdate("CREATE INDEX idx_docs ON docs(did)");
 
             statement.executeUpdate("drop table if exists tfs");
             statement.executeUpdate("CREATE TABLE tfs (" +
@@ -27,6 +28,8 @@ public class SetupDatabase
                     "    tf INT(11) NOT NULL," +
                     "    PRIMARY KEY (did, term)" +
                     ");");
+            statement.executeUpdate("CREATE INDEX idx_tfs ON docs(term, did)");
+
 
 
         }

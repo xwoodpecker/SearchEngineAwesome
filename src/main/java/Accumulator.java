@@ -1,12 +1,7 @@
 public class Accumulator {
+    private long did;
 
-    public long did;
-    public double score;
-
-    public Accumulator(long did, double score) {
-        this.did = did;
-        this.score = score;
-    }
+    private double score;
 
     public long getDid() {
         return did;

@@ -10,35 +10,17 @@ public class DataBaseHelper {
     public DataBaseHelper()
     {
         connection = null;
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
-        }
-        catch(SQLException e)
-        {
-            System.err.println(e.getMessage());
-
-        }
-        finally
-        {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                System.err.println(e.getMessage());
-            }
-        }
     }
 
 
     public List<Posting> getPostings(String term){
         List<Posting> postings = new ArrayList<>();
+        Statement statement = null;
+        ResultSet rs = null;
 
         try {
-            Statement statement = connection.createStatement();
-            ResultSet rs;
+            connection = DriverManager.getConnection("jdbc:sqlite:nyt.db");
+            statement = connection.createStatement();
 
             rs = statement.executeQuery("SELECT did, tf FROM tfs WHERE term =" + term + "ORDER BY did;");
             while ( rs.next() ) {
@@ -56,6 +38,10 @@ public class DataBaseHelper {
         {
             try
             {
+                if(rs != null)
+                    rs.close();
+                if(statement != null)
+                    statement.close();
                 if(connection != null)
                     connection.close();
             }

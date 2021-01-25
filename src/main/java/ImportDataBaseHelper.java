@@ -81,8 +81,10 @@ public class ImportDataBaseHelper {
         {
             try
             {
-                if(connection != null)
-                    connection.close();
+                if(insertIntoDocs != null)
+                    insertIntoDocs.close();
+                if(insertIntoTfs != null)
+                    insertIntoTfs.close();
             }
             catch(SQLException e)
             {

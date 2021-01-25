@@ -1,6 +1,4 @@
 import java.io.File;
-import java.io.FilenameFilter;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +10,7 @@ import static org.apache.commons.io.FileUtils.listFiles;
 public class Importer {
 
     private Parser parser = new Parser();
-    private DataBaseHelper dataBaseHelper = new DataBaseHelper();
+    private ImportDataBaseHelper importDataBaseHelper = new ImportDataBaseHelper();
 
     public void importFile(File file){
         if(file == null || !file.isDirectory()) {
@@ -28,7 +26,7 @@ public class Importer {
             Long size = f.length();
             System.out.println(String.format("Name: %s Size: %d Bytes", name, size));
             Document document = parser.parse(f);
-            dataBaseHelper.saveDocument(document);
+            importDataBaseHelper.saveDocument(document);
 
         }
     }

@@ -6,8 +6,7 @@ import java.io.File;
  * David Kiefer - 3790398
  * Maverick Studer - 3790185
  */
-public class Main {
-
+public class ImportData {
     /**
      * Testing the functionality
      * Replace the directory to test importer and you can check the parsed files in debug
